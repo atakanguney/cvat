@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import SVGCVATLogo from './assets/cvat-logo.svg';
+import SVGCVATLogoImg from './assets/co1-gold-logo-192x71.png';
 import SVGAccountIcon from './assets/account-icon.svg';
 import SVGEmptyTasksIcon from './assets/empty-tasks-icon.svg';
 import SVGMenuIcon from './assets/menu-icon.svg';
@@ -50,6 +50,10 @@ import SVGAITools from './assets/ai-tools-icon.svg';
 import SVGBrain from './assets/brain.svg';
 import SVGOpenCV from './assets/opencv.svg';
 import SVGFilterIcon from './assets/object-filter-icon.svg';
+
+function SVGCVATLogo(): JSX.Element {
+    return <img src={SVGCVATLogoImg} alt='CoOne Logo' />;
+}
 
 export const CVATLogo = React.memo((): JSX.Element => <SVGCVATLogo />);
 export const AccountIcon = React.memo((): JSX.Element => <SVGAccountIcon />);
