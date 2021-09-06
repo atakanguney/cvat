@@ -12,7 +12,6 @@ import message from 'antd/lib/message';
 import Text from 'antd/lib/typography/Text';
 
 import { TasksQuery } from 'reducers/interfaces';
-import FeedbackComponent from 'components/feedback/feedback';
 import TaskListContainer from 'containers/tasks-page/tasks-list';
 import ExportDatasetModal from 'components/export-dataset/export-dataset-modal';
 import TopBar from './top-bar';
@@ -221,7 +220,6 @@ class TasksPageComponent extends React.PureComponent<TasksPageProps & RouteCompo
                 ) : (
                     <EmptyListComponent />
                 )}
-                <FeedbackComponent />
                 <ExportDatasetModal />
             </div>
         );
