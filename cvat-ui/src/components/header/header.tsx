@@ -6,15 +6,11 @@ import './styles.scss';
 import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
-import { Row, Col } from 'antd/lib/grid';
 import Icon, {
     SettingOutlined,
-    InfoCircleOutlined,
     EditOutlined,
     LoadingOutlined,
     LogoutOutlined,
-    GithubOutlined,
-    QuestionCircleOutlined,
     CaretDownOutlined,
     ControlOutlined,
 } from '@ant-design/icons';
@@ -22,11 +18,9 @@ import Layout from 'antd/lib/layout';
 import Button from 'antd/lib/button';
 import Menu from 'antd/lib/menu';
 import Dropdown from 'antd/lib/dropdown';
-import Modal from 'antd/lib/modal';
 import Text from 'antd/lib/typography/Text';
 
 import getCore from 'cvat-core-wrapper';
-import consts from 'consts';
 
 import { CVATLogo, AccountIcon } from 'icons';
 import ChangePasswordDialog from 'components/change-password-modal/change-password-modal';
@@ -147,66 +141,7 @@ function HeaderContainer(props: Props): JSX.Element {
         isModelsPluginActive,
     } = props;
 
-    const {
-        CHANGELOG_URL, LICENSE_URL, GITTER_URL, FORUM_URL, GITHUB_URL,
-    } = consts;
-
     const history = useHistory();
-
-    function showAboutModal(): void {
-        Modal.info({
-            title: `${tool.name}`,
-            content: (
-                <div>
-                    <p>{`${tool.description}`}</p>
-                    <p>
-                        <Text strong>Server version:</Text>
-                        <Text type='secondary'>{` ${tool.server.version}`}</Text>
-                    </p>
-                    <p>
-                        <Text strong>Core version:</Text>
-                        <Text type='secondary'>{` ${tool.core.version}`}</Text>
-                    </p>
-                    <p>
-                        <Text strong>Canvas version:</Text>
-                        <Text type='secondary'>{` ${tool.canvas.version}`}</Text>
-                    </p>
-                    <p>
-                        <Text strong>UI version:</Text>
-                        <Text type='secondary'>{` ${tool.ui.version}`}</Text>
-                    </p>
-                    <Row justify='space-around'>
-                        <Col>
-                            <a href={CHANGELOG_URL} target='_blank' rel='noopener noreferrer'>
-                                What&apos;s new?
-                            </a>
-                        </Col>
-                        <Col>
-                            <a href={LICENSE_URL} target='_blank' rel='noopener noreferrer'>
-                                License
-                            </a>
-                        </Col>
-                        <Col>
-                            <a href={GITTER_URL} target='_blank' rel='noopener noreferrer'>
-                                Need help?
-                            </a>
-                        </Col>
-                        <Col>
-                            <a href={FORUM_URL} target='_blank' rel='noopener noreferrer'>
-                                Forum on Intel Developer Zone
-                            </a>
-                        </Col>
-                    </Row>
-                </div>
-            ),
-            width: 800,
-            okButtonProps: {
-                style: {
-                    width: '100px',
-                },
-            },
-        });
-    }
 
     const menu = (
         <Menu className='cvat-header-menu' mode='vertical'>
@@ -226,10 +161,6 @@ function HeaderContainer(props: Props): JSX.Element {
             <Menu.Item title={`Press ${switchSettingsShortcut} to switch`} onClick={() => switchSettingsDialog(true)}>
                 <SettingOutlined />
                 Settings
-            </Menu.Item>
-            <Menu.Item onClick={showAboutModal}>
-                <InfoCircleOutlined />
-                About
             </Menu.Item>
             {renderChangePasswordItem && (
                 <Menu.Item
@@ -309,32 +240,6 @@ function HeaderContainer(props: Props): JSX.Element {
                 )}
             </div>
             <div className='cvat-right-header'>
-                <Button
-                    className='cvat-header-button'
-                    type='link'
-                    href={GITHUB_URL}
-                    onClick={(event: React.MouseEvent): void => {
-                        event.preventDefault();
-                        window.open(GITHUB_URL, '_blank');
-                    }}
-                >
-                    <GithubOutlined />
-                    <Text className='cvat-text-color'>GitHub</Text>
-                </Button>
-                <Button
-                    className='cvat-header-button'
-                    type='link'
-                    href='https://openvinotoolkit.github.io/cvat/docs'
-                    onClick={(event: React.MouseEvent): void => {
-                        event.preventDefault();
-                        // false positive
-                        // eslint-disable-next-line
-                        window.open('https://openvinotoolkit.github.io/cvat/docs');
-                    }}
-                >
-                    <QuestionCircleOutlined />
-                    Help
-                </Button>
                 <Dropdown overlay={menu} className='cvat-header-menu-dropdown'>
                     <span>
                         <Icon className='cvat-header-account-icon' component={AccountIcon} />
