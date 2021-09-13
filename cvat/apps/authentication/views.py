@@ -49,8 +49,8 @@ class SigningView(views.APIView):
 
 class RegisterView(_RegisterView):
     def get_response_data(self, user):
-        data = self.get_serializer(user).data
-        data['email_verification_required'] = allauth_settings.EMAIL_VERIFICATION == \
-            allauth_settings.EmailVerificationMethod.MANDATORY
+        #data = self.get_serializer(user).data
+        #data['email_verification_required'] = allauth_settings.EMAIL_VERIFICATION == \
+            #allauth_settings.EmailVerificationMethod.MANDATORY
 
         return data
